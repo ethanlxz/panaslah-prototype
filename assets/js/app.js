@@ -29,7 +29,7 @@ function statusBadge(status) {
 }
 
 function sourceBadge(source) {
-  return `<span style="background:#FFF7ED;color:#C2410C;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;border:1px solid #FED7AA;">${source === 'measured' ? 'Measured' : 'Demo'}</span>`;
+  return `<span style="background:#FDF1EE;color:#EF4623;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid rgba(239,70,35,.18);">${source === 'measured' ? 'Measured' : 'Demo'}</span>`;
 }
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
@@ -99,7 +99,7 @@ function renderTownshipSVG(containerId, opts = {}) {
 
   // Sky background
   let skyColor = isNight ? '#1e293b' : '#EFF6FF';
-  if (hour >= 8 && hour < 10) skyColor = '#FFF7ED';
+  if (hour >= 8 && hour < 10) skyColor = '#FDF1EE';
   if (hour >= 10 && hour < 14) skyColor = '#EFF6FF';
   if (hour >= 14 && hour < 17) skyColor = '#FFFBEB';
   if (hour >= 17) skyColor = '#FFF3E0';
@@ -161,7 +161,7 @@ function renderTownshipSVG(containerId, opts = {}) {
         else heatFill = 'rgba(254,240,138,0.4)';
       }
       const isSelected = z.id === selectedZoneId;
-      const stroke = isSelected ? '#EA580C' : (z.type === 'pedestrian' ? '#F97316' : '#94a3b8');
+      const stroke = isSelected ? '#EF4623' : (z.type === 'pedestrian' ? '#EF4623' : '#94a3b8');
       const strokeW = isSelected ? 3 : 1;
       const strokeDash = isSelected ? '' : 'stroke-dasharray="4,3"';
       const clickHandler = onZoneClick ? `class="zone-overlay ${isSelected ? 'selected' : ''}" style="cursor:pointer;" tabindex="0" role="button" aria-label="${z.label} zone"` : '';
@@ -170,7 +170,7 @@ function renderTownshipSVG(containerId, opts = {}) {
   } else {
     site.zones.forEach(z => {
       const isSelected = z.id === selectedZoneId;
-      svg += `<path d="${z.svgPath}" fill="none" stroke="${isSelected ? '#EA580C' : '#94a3b8'}" stroke-width="${isSelected ? 3 : 1}" stroke-dasharray="${isSelected ? '' : '4,3'}" data-zone-id="${z.id}" style="cursor:pointer;" class="zone-overlay ${isSelected ? 'selected' : ''}" tabindex="0" role="button" aria-label="${z.label} zone"/>`;
+      svg += `<path d="${z.svgPath}" fill="none" stroke="${isSelected ? '#EF4623' : '#94a3b8'}" stroke-width="${isSelected ? 3 : 1}" stroke-dasharray="${isSelected ? '' : '4,3'}" data-zone-id="${z.id}" style="cursor:pointer;" class="zone-overlay ${isSelected ? 'selected' : ''}" tabindex="0" role="button" aria-label="${z.label} zone"/>`;
     });
   }
 
@@ -226,7 +226,7 @@ function renderTownshipSVG(containerId, opts = {}) {
       const temp = latest ? latest.temperatureC : null;
       const isSelected = s.id === selectedSensorId;
       const statusColor = s.status === 'online' ? '#15803d' : s.status === 'stale' ? '#d97706' : '#dc2626';
-      const ringColor = isSelected ? '#EA580C' : statusColor;
+      const ringColor = isSelected ? '#EF4623' : statusColor;
       const clickAttr = onSensorClick ? `class="sensor-marker ${isSelected ? 'selected' : ''}" style="cursor:pointer;" tabindex="0" role="button" aria-label="Sensor ${s.label}"` : '';
       svg += `<g data-sensor-id="${s.id}" ${clickAttr}>
         <circle class="sensor-circle" cx="${px}" cy="${py}" r="14" fill="white" stroke="${ringColor}" stroke-width="2" opacity=".95"/>
@@ -240,14 +240,14 @@ function renderTownshipSVG(containerId, opts = {}) {
   // Heat legend
   if (showExposure && !mini) {
     svg += `<g transform="translate(90, 520)">
-      <rect width="180" height="28" rx="6" fill="white" opacity=".9" stroke="#E4E4E7"/>
-      <text x="8" y="11" font-size="9" fill="#52525B" font-weight="600">HEAT EXPOSURE (illustrative)</text>
-      <rect x="8" y="15" width="18" height="8" rx="2" fill="rgba(254,240,138,0.7)"/>
-      <text x="29" y="21" font-size="8" fill="#52525B">Lower</text>
-      <rect x="70" y="15" width="18" height="8" rx="2" fill="rgba(251,146,60,0.7)"/>
-      <text x="91" y="21" font-size="8" fill="#52525B">Mid</text>
+      <rect width="180" height="28" rx="6" fill="white" opacity=".92" stroke="rgba(45,59,66,.12)"/>
+      <text x="8" y="11" font-size="9" fill="#2D3B42" font-weight="700">HEAT EXPOSURE (illustrative)</text>
+      <rect x="8" y="15" width="18" height="8" rx="2" fill="rgba(254,240,138,0.8)"/>
+      <text x="29" y="21" font-size="8" fill="#5a6e77">Lower</text>
+      <rect x="70" y="15" width="18" height="8" rx="2" fill="rgba(239,70,35,0.55)"/>
+      <text x="91" y="21" font-size="8" fill="#5a6e77">Mid</text>
       <rect x="120" y="15" width="18" height="8" rx="2" fill="rgba(185,28,28,0.7)"/>
-      <text x="141" y="21" font-size="8" fill="#52525B">Higher</text>
+      <text x="141" y="21" font-size="8" fill="#5a6e77">Higher</text>
     </g>`;
   }
 
@@ -260,7 +260,7 @@ function renderTownshipSVG(containerId, opts = {}) {
     const sy = cy - r * Math.cos(azR);
     svg += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#E4E4E7" stroke-width="1"/>`;
     svg += `<circle cx="${sx.toFixed(1)}" cy="${sy.toFixed(1)}" r="10" fill="#FBBF24" stroke="#F59E0B" stroke-width="1.5"/>`;
-    svg += `<text x="${cx}" y="${cy + r + 12}" text-anchor="middle" font-size="9" fill="#71717a">Sun direction</text>`;
+    svg += `<text x="${cx}" y="${cy + r + 12}" text-anchor="middle" font-size="9" fill="#5a6e77">Sun direction</text>`;
   }
 
   svg += `</svg>`;
@@ -418,7 +418,7 @@ const dashboard = {
       const r = dataService.getLatestReadingBySensor(s.id);
       return `<div class="hotspot-item" style="gap:8px;">
         <span style="font-size:13px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${s.label}</span>
-        ${r ? `<span style="font-size:12px;color:#52525B;">${r.temperatureC.toFixed(1)}°C</span>` : ''}
+        ${r ? `<span style="font-size:12px;color:#5a6e77;font-weight:500;">${r.temperatureC.toFixed(1)}°C</span>` : ''}
         ${statusBadge(s.status)}
       </div>`;
     }).join('');
@@ -511,12 +511,12 @@ const twin = {
       </tr>`;
     }).join('');
     el.innerHTML = `<table style="width:100%;font-size:12px;border-collapse:collapse;">
-      <thead><tr style="background:#F9FAFB;">
-        <th style="padding:6px 10px;text-align:left;border-bottom:1px solid #E4E4E7;">Zone</th>
-        <th style="padding:6px 10px;text-align:left;border-bottom:1px solid #E4E4E7;">Type</th>
-        <th style="padding:6px 10px;text-align:left;border-bottom:1px solid #E4E4E7;">Area (m²)</th>
-        <th style="padding:6px 10px;text-align:left;border-bottom:1px solid #E4E4E7;">Latest Temp</th>
-        <th style="padding:6px 10px;text-align:left;border-bottom:1px solid #E4E4E7;">Shaded (ped. zones)</th>
+      <thead><tr style="background:#FDF1EE;">
+        <th style="padding:6px 10px;text-align:left;border-bottom:1px solid rgba(239,70,35,.12);">Zone</th>
+        <th style="padding:6px 10px;text-align:left;border-bottom:1px solid rgba(239,70,35,.12);">Type</th>
+        <th style="padding:6px 10px;text-align:left;border-bottom:1px solid rgba(239,70,35,.12);">Area (m²)</th>
+        <th style="padding:6px 10px;text-align:left;border-bottom:1px solid rgba(239,70,35,.12);">Latest Temp</th>
+        <th style="padding:6px 10px;text-align:left;border-bottom:1px solid rgba(239,70,35,.12);">Shaded (ped. zones)</th>
       </tr></thead><tbody>${rows}</tbody></table>`;
   },
 
@@ -559,7 +559,7 @@ const twin = {
     panel.innerHTML = `
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
         <h3 style="font-size:15px;font-weight:600;margin:0;">${zone.label}</h3>
-        <span style="font-size:11px;padding:2px 8px;border-radius:12px;background:#F1F5F9;color:#52525B;font-weight:500;">${zone.type}</span>
+        <span style="font-size:11px;padding:3px 10px;border-radius:999px;background:#FDF1EE;color:#5a6e77;font-weight:600;border:1px solid rgba(239,70,35,.15);">${zone.type}</span>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
         <div class="metric-mini">
@@ -577,17 +577,17 @@ const twin = {
           <div class="metric-mini-unit">${shade.nighttime ? '% (night)' : '%'}</div>
         </div>`}
       </div>
-      ${reading ? `<div style="background:#F9FAFB;border-radius:8px;padding:10px 12px;font-size:13px;margin-bottom:10px;">
-        <div style="font-size:11px;color:#71717a;margin-bottom:4px;">Nearest sensor — ${sensor?.label}</div>
-        <div style="display:flex;gap:16px;">
-          <span><b>${reading.temperatureC.toFixed(1)}°C</b> Temp</span>
+      ${reading ? `<div style="background:#FDF1EE;border:1px solid rgba(239,70,35,.15);border-radius:16px;padding:10px 14px;font-size:13px;margin-bottom:10px;">
+        <div style="font-size:11px;color:#5a6e77;font-weight:600;margin-bottom:4px;">Nearest sensor — ${sensor?.label}</div>
+        <div style="display:flex;gap:16px;font-weight:500;">
+          <span><b style="color:#EF4623;">${reading.temperatureC.toFixed(1)}°C</b> Temp</span>
           <span><b>${reading.humidityPct}%</b> Humidity</span>
         </div>
-        <div style="font-size:11px;color:#71717a;margin-top:4px;">${sourceBadge(reading.source)} at ${fmtTime(reading.recordedAt)}</div>
-      </div>` : '<div style="font-size:12px;color:#71717a;margin-bottom:10px;">No sensor in this zone</div>'}
-      ${score != null ? `<div style="padding:8px 12px;border-radius:8px;background:${scoreColor(score)}18;border:1px solid ${scoreColor(score)}44;font-size:12px;">
+        <div style="font-size:11px;color:#5a6e77;margin-top:4px;">${sourceBadge(reading.source)} at ${fmtTime(reading.recordedAt)}</div>
+      </div>` : '<div style="font-size:12px;color:#5a6e77;margin-bottom:10px;">No sensor in this zone</div>'}
+      ${score != null ? `<div style="padding:10px 14px;border-radius:16px;background:${scoreColor(score)}12;border:1px solid ${scoreColor(score)}33;font-size:12px;">
         <span style="color:${scoreColor(score)};font-weight:700;">Illustrative exposure: ${score}/100 — ${scoreLabel(score)}</span>
-        <br><span style="color:#71717a;font-size:11px;">Formula: 0.4 × temp_factor + 0.6 × direct_sun_fraction. Not a scientific model.</span>
+        <br><span style="color:#5a6e77;font-size:11px;">Formula: 0.4 × temp_factor + 0.6 × direct_sun_fraction. Not a scientific model.</span>
       </div>` : ''}
     `;
 
@@ -597,8 +597,8 @@ const twin = {
       intPanel.style.display = pedMask ? 'block' : 'none';
       if (pedMask) {
         document.getElementById('intervention-content').innerHTML = `
-          <div style="font-size:13px;color:#52525B;margin-bottom:10px;">Apply interventions in <a href="#scenarios" onclick="window.panaslah.navigate('scenarios')" style="color:#C2410C;">Scenarios view</a> to compare shade impact.</div>
-          <a href="#scenarios" onclick="window.panaslah.navigate('scenarios')" class="btn-primary" style="text-decoration:none;display:inline-block;font-size:13px;padding:7px 14px;">Open Scenario Comparison</a>`;
+          <div style="font-size:13px;color:#5a6e77;margin-bottom:12px;">Apply interventions in <a href="#scenarios" onclick="window.panaslah.navigate('scenarios')" style="color:#EF4623;font-weight:600;">Scenarios view</a> to compare shade impact.</div>
+          <a href="#scenarios" onclick="window.panaslah.navigate('scenarios')" class="btn-primary" style="font-size:13px;padding:7px 16px;">Open Scenario Comparison</a>`;
       }
     }
   },
@@ -616,7 +616,7 @@ const twin = {
         <h3 style="font-size:15px;font-weight:600;margin:0;">${sensor.label}</h3>
         ${statusBadge(sensor.status)}
       </div>
-      <div style="font-size:12px;color:#71717a;margin-bottom:10px;">Zone: ${state.site.zones.find(z => z.id === sensor.zoneId)?.label || sensor.zoneId} &nbsp;·&nbsp; ${sourceBadge(sensor.source)}</div>
+      <div style="font-size:12px;color:#5a6e77;margin-bottom:10px;font-weight:500;">Zone: ${state.site.zones.find(z => z.id === sensor.zoneId)?.label || sensor.zoneId} &nbsp;·&nbsp; ${sourceBadge(sensor.source)}</div>
       ${reading ? `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
         <div class="metric-mini">
           <div class="metric-mini-label">Temperature</div>
@@ -634,8 +634,8 @@ const twin = {
           <div class="metric-mini-unit">V</div>
         </div>` : ''}
       </div>
-      <div style="font-size:11px;color:#71717a;">Last reading: ${fmtDateTime(reading.recordedAt)} UTC · quality: ${reading.quality}</div>` : '<div style="font-size:13px;color:#71717a;">No readings available.</div>'}
-      <div style="font-size:11px;color:#71717a;margin-top:8px;">Sampling interval: ${sensor.samplingIntervalSec}s · Firmware: ${sensor.firmwareVersion}</div>
+      <div style="font-size:11px;color:#5a6e77;font-weight:500;">Last reading: ${fmtDateTime(reading.recordedAt)} UTC · quality: ${reading.quality}</div>` : '<div style="font-size:13px;color:#5a6e77;">No readings available.</div>'}
+      <div style="font-size:11px;color:#5a6e77;margin-top:8px;font-weight:500;">Sampling interval: ${sensor.samplingIntervalSec}s · Firmware: ${sensor.firmwareVersion}</div>
     `;
   },
 
@@ -644,7 +644,7 @@ const twin = {
     this.selectedSensor = null;
     this._updateMap();
     const panel = document.getElementById('zone-detail');
-    if (panel) panel.innerHTML = `<h3 style="font-size:14px;font-weight:600;margin:0 0 12px;color:#52525B;">Select a zone or sensor</h3><p style="font-size:13px;color:#71717a;margin:0;">Click on the map to inspect a zone's heat exposure or a sensor's latest reading.</p>`;
+    if (panel) panel.innerHTML = `<h3 class="heading-md" style="margin:0 0 10px;color:#5a6e77;">Select a zone or sensor</h3><p class="subtext" style="margin:0;">Click the map to inspect heat exposure or a sensor reading.</p>`;
     const intPanel = document.getElementById('intervention-panel');
     if (intPanel) intPanel.style.display = 'none';
   }
@@ -713,7 +713,7 @@ const scenarios = {
   },
 
   _metricsHTML(results, accent = false) {
-    const c = accent ? '#EA580C' : '#52525B';
+    const c = accent ? '#EF4623' : '#2D3B42';
     return `
       <div class="metric-mini">
         <div class="metric-mini-label">Shaded area</div>
@@ -762,11 +762,11 @@ const scenarios = {
     const tableEl = document.getElementById('comparison-table');
     if (tableEl) {
       tableEl.innerHTML = `<table style="width:100%;font-size:13px;">
-        <thead><tr style="background:#F9FAFB;"><th style="padding:8px 12px;text-align:left;border-bottom:1px solid #E4E4E7;">Metric</th><th style="padding:8px 12px;text-align:right;border-bottom:1px solid #E4E4E7;">Baseline</th><th style="padding:8px 12px;text-align:right;border-bottom:1px solid #E4E4E7;">Proposal</th><th style="padding:8px 12px;text-align:right;border-bottom:1px solid #E4E4E7;">Change</th><th style="padding:8px 12px;text-align:left;border-bottom:1px solid #E4E4E7;">Unit</th></tr></thead>
+        <thead><tr style="background:#FDF1EE;"><th style="padding:9px 14px;text-align:left;border-bottom:1px solid rgba(239,70,35,.12);">Metric</th><th style="padding:9px 14px;text-align:right;border-bottom:1px solid rgba(239,70,35,.12);">Baseline</th><th style="padding:9px 14px;text-align:right;border-bottom:1px solid rgba(239,70,35,.12);">Proposal</th><th style="padding:9px 14px;text-align:right;border-bottom:1px solid rgba(239,70,35,.12);">Change</th><th style="padding:9px 14px;text-align:left;border-bottom:1px solid rgba(239,70,35,.12);">Unit</th></tr></thead>
         <tbody>
-          <tr><td style="padding:8px 12px;">Shaded pedestrian area</td><td style="padding:8px 12px;text-align:right;font-variant-numeric:tabular-nums;">${baseline.shadedPct.toFixed(1)}</td><td style="padding:8px 12px;text-align:right;font-variant-numeric:tabular-nums;">${proposal.shadedPct.toFixed(1)}</td><td style="padding:8px 12px;text-align:right;" class="${diff_shaded >= 0 ? 'diff-positive' : 'diff-negative'}">${diff_shaded >= 0 ? '+' : ''}${diff_shaded.toFixed(1)}</td><td style="padding:8px 12px;color:#71717a;">%</td></tr>
-          <tr><td style="padding:8px 12px;">Direct sun area</td><td style="padding:8px 12px;text-align:right;font-variant-numeric:tabular-nums;">${baseline.directSunAreaM2.toFixed(0)}</td><td style="padding:8px 12px;text-align:right;font-variant-numeric:tabular-nums;">${proposal.directSunAreaM2.toFixed(0)}</td><td style="padding:8px 12px;text-align:right;" class="${diff_exposed <= 0 ? 'diff-positive' : 'diff-negative'}">${diff_exposed >= 0 ? '+' : ''}${diff_exposed.toFixed(0)}</td><td style="padding:8px 12px;color:#71717a;">m²</td></tr>
-          ${diff_score != null ? `<tr><td style="padding:8px 12px;">Illustrative exposure score</td><td style="padding:8px 12px;text-align:right;">${baseline.score}</td><td style="padding:8px 12px;text-align:right;">${proposal.score}</td><td style="padding:8px 12px;text-align:right;" class="${diff_score <= 0 ? 'diff-positive' : 'diff-negative'}">${diff_score >= 0 ? '+' : ''}${diff_score}</td><td style="padding:8px 12px;color:#71717a;">/100</td></tr>` : ''}
+          <tr><td style="padding:9px 14px;font-weight:500;">Shaded pedestrian area</td><td style="padding:9px 14px;text-align:right;font-variant-numeric:tabular-nums;">${baseline.shadedPct.toFixed(1)}</td><td style="padding:9px 14px;text-align:right;font-variant-numeric:tabular-nums;">${proposal.shadedPct.toFixed(1)}</td><td style="padding:9px 14px;text-align:right;" class="${diff_shaded >= 0 ? 'diff-positive' : 'diff-negative'}">${diff_shaded >= 0 ? '+' : ''}${diff_shaded.toFixed(1)}</td><td style="padding:9px 14px;color:#5a6e77;">%</td></tr>
+          <tr><td style="padding:9px 14px;font-weight:500;">Direct sun area</td><td style="padding:9px 14px;text-align:right;font-variant-numeric:tabular-nums;">${baseline.directSunAreaM2.toFixed(0)}</td><td style="padding:9px 14px;text-align:right;font-variant-numeric:tabular-nums;">${proposal.directSunAreaM2.toFixed(0)}</td><td style="padding:9px 14px;text-align:right;" class="${diff_exposed <= 0 ? 'diff-positive' : 'diff-negative'}">${diff_exposed >= 0 ? '+' : ''}${diff_exposed.toFixed(0)}</td><td style="padding:9px 14px;color:#5a6e77;">m²</td></tr>
+          ${diff_score != null ? `<tr><td style="padding:9px 14px;font-weight:500;">Illustrative exposure score</td><td style="padding:9px 14px;text-align:right;">${baseline.score}</td><td style="padding:9px 14px;text-align:right;">${proposal.score}</td><td style="padding:9px 14px;text-align:right;" class="${diff_score <= 0 ? 'diff-positive' : 'diff-negative'}">${diff_score >= 0 ? '+' : ''}${diff_score}</td><td style="padding:9px 14px;color:#5a6e77;">/100</td></tr>` : ''}
         </tbody>
       </table>`;
     }
@@ -779,9 +779,9 @@ const scenarios = {
       if (canopy) parts.push('a shade canopy over the playground');
       if (!parts.length) {
         narrEl.textContent = 'Add interventions (trees or canopy) to see a difference.';
-        narrEl.style.background = '#F9FAFB';
-        narrEl.style.borderColor = '#E4E4E7';
-        narrEl.style.color = '#52525B';
+        narrEl.style.background = '#F9F6F4';
+        narrEl.style.borderColor = 'rgba(45,59,66,.10)';
+        narrEl.style.color = '#5a6e77';
       } else {
         narrEl.style.background = '#F0FDF4';
         narrEl.style.borderColor = '#BBF7D0';
@@ -855,19 +855,19 @@ const scenarios = {
     const el = document.getElementById('saved-scenarios-list');
     if (!el) return;
     if (!list.length) {
-      el.innerHTML = `<div style="padding:20px;text-align:center;font-size:13px;color:#71717a;background:white;border:1px solid #E4E4E7;border-radius:12px;">No saved scenarios. Save a comparison above to store it locally.</div>`;
+      el.innerHTML = `<div style="padding:28px;text-align:center;font-size:13px;color:#5a6e77;background:var(--peach,#FDF1EE);border:1px solid rgba(239,70,35,.15);border-radius:24px;">No saved scenarios yet. Save a comparison above to store it in this browser.</div>`;
       return;
     }
     el.innerHTML = list.map(s => `
-      <div class="card" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;margin-bottom:10px;">
+      <div class="card" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:16px 20px;margin-bottom:10px;">
         <div style="flex:1;min-width:0;">
-          <div style="font-size:14px;font-weight:600;">${s.name}</div>
-          <div style="font-size:12px;color:#71717a;margin-top:2px;">${fmtDateTime(s.createdAt)} · Trees: ${s.treePresetCount} · Canopy: ${s.canopyCoveragePct > 0 ? 'Yes' : 'No'}</div>
+          <div style="font-size:14px;font-weight:600;color:#2D3B42;">${s.name}</div>
+          <div style="font-size:12px;color:#5a6e77;margin-top:3px;font-weight:500;">${fmtDateTime(s.createdAt)} · Trees: ${s.treePresetCount} · Canopy: ${s.canopyCoveragePct > 0 ? 'Yes' : 'No'}</div>
         </div>
-        <div style="font-size:13px;color:#52525B;">
-          Shaded: ${s.proposalResult?.shadedPct.toFixed(1)}% (was ${s.baselineResult?.shadedPct.toFixed(1)}%)
+        <div style="font-size:13px;color:#5a6e77;font-weight:500;">
+          Shaded: <b style="color:#EF4623;">${s.proposalResult?.shadedPct.toFixed(1)}%</b> (was ${s.baselineResult?.shadedPct.toFixed(1)}%)
         </div>
-        <button onclick="window.panaslah.scenarios.deleteScenario('${s.id}')" style="font-size:12px;color:#B91C1C;background:none;border:1px solid #FECACA;padding:4px 10px;border-radius:8px;cursor:pointer;">Delete</button>
+        <button onclick="window.panaslah.scenarios.deleteScenario('${s.id}')" style="font-size:12px;color:#b91c1c;background:none;border:1px solid #fecaca;padding:5px 12px;border-radius:999px;cursor:pointer;font-weight:600;">Delete</button>
       </div>`).join('');
   },
 
@@ -891,7 +891,7 @@ const sensors = {
     if (!tbody) return;
 
     if (!list.length) {
-      tbody.innerHTML = `<tr><td colspan="9" style="padding:28px;text-align:center;color:#71717a;font-size:13px;">No sensors match the current filter.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="9" style="padding:32px;text-align:center;color:#5a6e77;font-size:13px;font-weight:500;">No sensors match the current filter.</td></tr>`;
       return;
     }
 
@@ -899,15 +899,15 @@ const sensors = {
       const reading = dataService.getLatestReadingBySensor(s.id);
       const zone = state.site.zones.find(z => z.id === s.zoneId);
       return `<tr>
-        <td style="padding:12px 16px;font-size:13px;font-weight:500;">${s.label}<br><span style="font-size:11px;color:#71717a;font-weight:400;">${s.id}</span></td>
-        <td style="padding:12px 16px;font-size:13px;">${zone?.label || s.zoneId}</td>
-        <td style="padding:12px 16px;">${sourceBadge(s.source)}</td>
-        <td style="padding:12px 16px;text-align:right;font-size:13px;font-variant-numeric:tabular-nums;">${reading ? reading.temperatureC.toFixed(1) : '—'}</td>
-        <td style="padding:12px 16px;text-align:right;font-size:13px;font-variant-numeric:tabular-nums;">${reading ? reading.humidityPct : '—'}</td>
-        <td style="padding:12px 16px;text-align:right;font-size:13px;font-variant-numeric:tabular-nums;">${s.batteryVoltage != null ? s.batteryVoltage.toFixed(2) : '—'}</td>
-        <td style="padding:12px 16px;font-size:12px;color:#52525B;">${fmtDateTime(s.lastSeenAt)}</td>
-        <td style="padding:12px 16px;">${statusBadge(s.status)}</td>
-        <td style="padding:12px 16px;"><button onclick="window.panaslah.sensors.openDrawer('${s.id}')" style="font-size:12px;color:#C2410C;background:none;border:1px solid #FED7AA;padding:4px 10px;border-radius:8px;cursor:pointer;">Details</button></td>
+        <td style="padding:13px 18px;font-size:13px;font-weight:600;color:#2D3B42;">${s.label}<br><span style="font-size:11px;color:#5a6e77;font-weight:400;">${s.id}</span></td>
+        <td style="padding:13px 18px;font-size:13px;">${zone?.label || s.zoneId}</td>
+        <td style="padding:13px 18px;">${sourceBadge(s.source)}</td>
+        <td style="padding:13px 18px;text-align:right;font-size:13px;font-variant-numeric:tabular-nums;font-weight:600;color:#EF4623;">${reading ? reading.temperatureC.toFixed(1) : '—'}</td>
+        <td style="padding:13px 18px;text-align:right;font-size:13px;font-variant-numeric:tabular-nums;">${reading ? reading.humidityPct : '—'}</td>
+        <td style="padding:13px 18px;text-align:right;font-size:13px;font-variant-numeric:tabular-nums;">${s.batteryVoltage != null ? s.batteryVoltage.toFixed(2) : '—'}</td>
+        <td style="padding:13px 18px;font-size:12px;color:#5a6e77;font-weight:500;">${fmtDateTime(s.lastSeenAt)}</td>
+        <td style="padding:13px 18px;">${statusBadge(s.status)}</td>
+        <td style="padding:13px 18px;"><button onclick="window.panaslah.sensors.openDrawer('${s.id}')" style="font-size:12px;color:#EF4623;background:#FDF1EE;border:1px solid rgba(239,70,35,.25);padding:5px 14px;border-radius:999px;cursor:pointer;font-weight:600;">Details</button></td>
       </tr>`;
     }).join('');
 
