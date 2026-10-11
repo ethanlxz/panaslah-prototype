@@ -1,0 +1,62 @@
+[
+  {
+    "id": "sensor-01",
+    "label": "Playground North",
+    "zoneId": "playground",
+    "position": [330, 230],
+    "samplingIntervalSec": 60,
+    "lastSeenAt": "2025-11-10T06:28:00Z",
+    "source": "demo",
+    "status": "online",
+    "batteryVoltage": 3.85,
+    "firmwareVersion": "0.3.1"
+  },
+  {
+    "id": "sensor-02",
+    "label": "Playground South",
+    "zoneId": "playground",
+    "position": [430, 305],
+    "samplingIntervalSec": 60,
+    "lastSeenAt": "2025-11-10T06:27:00Z",
+    "source": "demo",
+    "status": "online",
+    "batteryVoltage": 3.72,
+    "firmwareVersion": "0.3.1"
+  },
+  {
+    "id": "sensor-03",
+    "label": "North Walkway Mid",
+    "zoneId": "walkway-north",
+    "position": [400, 165],
+    "samplingIntervalSec": 120,
+    "lastSeenAt": "2025-11-10T06:10:00Z",
+    "source": "demo",
+    "status": "stale",
+    "batteryVoltage": 3.51,
+    "firmwareVersion": "0.3.0"
+  },
+  {
+    "id": "sensor-04",
+    "label": "East Walkway",
+    "zoneId": "walkway-east",
+    "position": [677, 330],
+    "samplingIntervalSec": 60,
+    "lastSeenAt": null,
+    "source": "demo",
+    "status": "offline",
+    "batteryVoltage": null,
+    "firmwareVersion": "0.2.9"
+  },
+  {
+    "id": "sensor-05",
+    "label": "Green Space West",
+    "zoneId": "green-west",
+    "position": [200, 285],
+    "samplingIntervalSec": 60,
+    "lastSeenAt": "2025-11-10T06:29:00Z",
+    "source": "demo",
+    "status": "online",
+    "batteryVoltage": 3.91,
+    "firmwareVersion": "0.3.1"
+  }
+]

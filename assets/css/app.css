@@ -1,0 +1,231 @@
+/* app.css — Panaslah design system, compiled-equivalent stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --text: #18181B;
+  --text-muted: #52525B;
+  --border: #E4E4E7;
+  --orange: #EA580C;
+  --orange-strong: #C2410C;
+  --orange-hover: #9A3412;
+  --orange-soft: #FFF7ED;
+  --focus: #C2410C;
+  --success: #15803D;
+  --warning: #92400E;
+  --danger: #B91C1C;
+  --radius: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.5;
+  font-size: 15px;
+  margin: 0;
+}
+
+/* Focus rings */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+}
+
+/* Metric cards */
+.card-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.metric-value {
+  font-size: 34px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.metric-unit {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.source-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--orange-strong);
+  background: var(--orange-soft);
+  border: 1px solid #FED7AA;
+  border-radius: 20px;
+  padding: 2px 8px;
+  margin-top: 8px;
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--orange-strong);
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background .15s ease;
+  display: inline-block;
+  white-space: nowrap;
+  min-height: 40px;
+  line-height: 1.3;
+}
+
+.btn-primary:hover { background: var(--orange-hover); }
+.btn-primary:focus-visible { outline: 2px solid var(--focus); }
+
+/* Nav links */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: background .15s ease, color .15s ease;
+}
+
+.nav-link:hover { background: #F4F4F5; color: var(--text); }
+.nav-link.nav-active { background: var(--orange-soft); color: var(--orange-strong); }
+
+/* Layer toggles */
+.layer-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.layer-toggle input[type="checkbox"] { accent-color: var(--orange); cursor: pointer; }
+
+/* Toggle switch */
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-switch input { display: none; }
+
+.toggle-slider {
+  width: 40px;
+  height: 22px;
+  background: #E4E4E7;
+  border-radius: 11px;
+  position: relative;
+  transition: background .2s ease;
+  flex-shrink: 0;
+}
+
+.toggle-slider::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  top: 3px;
+  left: 3px;
+  transition: transform .2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+
+.toggle-switch input:checked + .toggle-slider { background: var(--orange); }
+.toggle-switch input:checked + .toggle-slider::after { transform: translateX(18px); }
+
+/* Status badges */
+.status-online { color: var(--success); background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 20px; font-size: 11px; font-weight: 600; padding: 2px 8px; display: inline-flex; align-items: center; gap: 4px; }
+.status-stale { color: #B45309; background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 20px; font-size: 11px; font-weight: 600; padding: 2px 8px; display: inline-flex; align-items: center; gap: 4px; }
+.status-offline { color: #B91C1C; background: #FEF2F2; border: 1px solid #FECACA; border-radius: 20px; font-size: 11px; font-weight: 600; padding: 2px 8px; display: inline-flex; align-items: center; gap: 4px; }
+
+/* Tables */
+table { border-collapse: collapse; }
+th { font-weight: 600; }
+tbody tr { border-bottom: 1px solid var(--border); transition: background .1s ease; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: #F9FAFB; }
+
+/* Scenario grid responsive */
+@media (max-width: 900px) {
+  .scenario-grid { grid-template-columns: 1fr !important; }
+  .twin-grid { grid-template-columns: 1fr !important; }
+  .dashboard-grid { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 768px) {
+  .view-content { padding: 16px; }
+  .topbar { padding: 0 16px; }
+  .metric-value { font-size: 26px; }
+}
+
+/* Heat overlay colours */
+.heat-low { fill: rgba(254, 240, 138, 0.55); }
+.heat-med { fill: rgba(251, 146, 60, 0.55); }
+.heat-high { fill: rgba(185, 28, 28, 0.55); }
+
+/* Hotspot item */
+.hotspot-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.hotspot-item:last-child { border-bottom: none; }
+
+/* SVG sensor marker */
+.sensor-marker { cursor: pointer; transition: opacity .15s ease; }
+.sensor-marker:hover .sensor-circle { stroke-width: 3; }
+.sensor-marker.selected .sensor-circle { stroke: var(--orange); stroke-width: 3; }
+
+/* Zone overlay */
+.zone-overlay { cursor: pointer; transition: opacity .15s ease; }
+.zone-overlay:hover { opacity: 0.9; }
+.zone-overlay.selected { stroke: var(--orange) !important; stroke-width: 3 !important; }
+
+/* Metric mini card */
+.metric-mini {
+  padding: 10px 12px;
+  background: #F9FAFB;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.metric-mini-label { font-size: 11px; color: var(--text-muted); font-weight: 500; margin-bottom: 3px; }
+.metric-mini-value { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.metric-mini-unit { font-size: 11px; color: var(--text-muted); }
+
+/* Diff badge */
+.diff-positive { color: var(--success); font-weight: 600; }
+.diff-negative { color: var(--danger); font-weight: 600; }

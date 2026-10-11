@@ -1,0 +1,12 @@
+{
+  "name": "panaslah-frontend",
+  "version": "0.1.0",
+  "description": "Panaslah Heat Resilience Digital Twin — frontend prototype",
+  "scripts": {
+    "serve": "npx serve . -l 3000 --no-clipboard",
+    "serve:alt": "python -m http.server 3000"
+  },
+  "devDependencies": {
+    "serve": "^14.2.3"
+  }
+}

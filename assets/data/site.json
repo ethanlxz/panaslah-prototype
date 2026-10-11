@@ -1,0 +1,86 @@
+{
+  "id": "panaslah-demo-01",
+  "name": "Panaslah Demo Township",
+  "disclaimer": "Illustrative development layout; no official site data.",
+  "coordinates": { "lat": 3.1, "lng": 101.7 },
+  "timezone": "Asia/Kuala_Lumpur",
+  "widthM": 200,
+  "heightM": 160,
+  "svgWidth": 800,
+  "svgHeight": 640,
+  "zones": [
+    {
+      "id": "playground",
+      "label": "Playground",
+      "type": "pedestrian",
+      "svgPath": "M320,220 L460,220 L460,320 L320,320 Z",
+      "areaM2": 1050,
+      "cx": 390,
+      "cy": 270
+    },
+    {
+      "id": "walkway-north",
+      "label": "North Walkway",
+      "type": "pedestrian",
+      "svgPath": "M100,150 L700,150 L700,185 L100,185 Z",
+      "areaM2": 900,
+      "cx": 400,
+      "cy": 167
+    },
+    {
+      "id": "walkway-east",
+      "label": "East Walkway",
+      "type": "pedestrian",
+      "svgPath": "M660,185 L695,185 L695,480 L660,480 Z",
+      "areaM2": 450,
+      "cx": 677,
+      "cy": 332
+    },
+    {
+      "id": "carpark",
+      "label": "Car Park",
+      "type": "road",
+      "svgPath": "M100,380 L280,380 L280,500 L100,500 Z",
+      "areaM2": 1400,
+      "cx": 190,
+      "cy": 440
+    },
+    {
+      "id": "green-west",
+      "label": "West Green Space",
+      "type": "green",
+      "svgPath": "M100,200 L300,200 L300,370 L100,370 Z",
+      "areaM2": 1500,
+      "cx": 200,
+      "cy": 285
+    },
+    {
+      "id": "green-east",
+      "label": "East Green Space",
+      "type": "green",
+      "svgPath": "M480,220 L640,220 L640,370 L480,370 Z",
+      "areaM2": 1120,
+      "cx": 560,
+      "cy": 295
+    }
+  ],
+  "buildings": [
+    { "id": "block-a", "label": "Block A", "svgPath": "M100,390 L100,500 L280,500 L280,390 Z", "heightM": 12, "fill": "#94a3b8" },
+    { "id": "block-b1", "label": "Block B1", "svgPath": "M310,220 L310,500 L460,500 L460,390 L395,390 L395,220 Z", "heightM": 10, "fill": "#94a3b8" },
+    { "id": "block-c", "label": "Block C", "svgPath": "M480,380 L480,500 L640,500 L640,380 Z", "heightM": 8, "fill": "#94a3b8" },
+    { "id": "block-d", "label": "Block D", "svgPath": "M480,100 L640,100 L640,210 L480,210 Z", "heightM": 8, "fill": "#94a3b8" },
+    { "id": "community-hall", "label": "Community Hall", "svgPath": "M100,100 L300,100 L300,145 L100,145 Z", "heightM": 6, "fill": "#94a3b8" }
+  ],
+  "trees": [
+    { "id": "tree-1", "cx": 155, "cy": 250, "r": 20 },
+    { "id": "tree-2", "cx": 200, "cy": 290, "r": 18 },
+    { "id": "tree-3", "cx": 165, "cy": 330, "r": 22 },
+    { "id": "tree-4", "cx": 240, "cy": 265, "r": 16 },
+    { "id": "tree-5", "cx": 520, "cy": 255, "r": 18 },
+    { "id": "tree-6", "cx": 570, "cy": 295, "r": 20 },
+    { "id": "tree-7", "cx": 600, "cy": 340, "r": 16 }
+  ],
+  "pedestrianMask": [
+    "playground", "walkway-north", "walkway-east"
+  ]
+}
